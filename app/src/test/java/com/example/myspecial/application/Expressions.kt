@@ -1,12 +1,23 @@
 package com.example.myspecial.application
 
 import org.junit.Test
+import java.lang.NumberFormatException
 
-// TODO: Create the isEven function with `number`
+fun isEven(a: Int): String {
+    return if (a % 2 == 0) {
+        "it's even"
+    } else {
+        "it's odd"
+    }
+}
 
-
-// TODO: Create the stringToInt function with `value`
-
+fun stringToInt(x: String): Int {
+    return try {
+        x.toInt()
+    } catch (e: NumberFormatException) {
+        0
+    }
+}
 
 class ExpressionsTest {
 
