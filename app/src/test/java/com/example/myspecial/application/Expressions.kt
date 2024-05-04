@@ -4,11 +4,7 @@ import org.junit.Test
 import java.lang.NumberFormatException
 
 fun isEven(a: Int): String {
-    return if (a % 2 == 0) {
-        "it's even"
-    } else {
-        "it's odd"
-    }
+    return if (a % 2 == 0) "it's even" else "it's odd"
 }
 
 fun stringToInt(x: String): Int {
@@ -24,19 +20,19 @@ class ExpressionsTest {
     @Test
     fun ifAsExpression() {
         // TODO: print the results of the isEven function with `2`
-
+        println(isEven(2))
 
         // TODO: print the results of the isEven function with `3`
-
+        println(isEven(3))
     }
 
     @Test
     fun tryCatchAsExpression() {
         // TODO: print the results of the stringToInt function with `"2"`
-
+        println(stringToInt("2"))
 
         // TODO: print the results of the stringToInt function with `"cake"`
-
+        println(stringToInt("cake"))
     }
 
 }
