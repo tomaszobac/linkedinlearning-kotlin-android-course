@@ -3,6 +3,7 @@ package com.example.myspecial.application
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,6 +20,7 @@ import com.example.myspecial.application.ui.theme.MySpecialApplicationTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContent {
             MySpecialApplicationTheme {
                 Surface(
@@ -33,21 +35,14 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Column(
-        modifier = modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
+fun Greeting(name: String) {
+    Column {
         Text(
             text = "Hello $name!",
-            modifier = modifier
         )
-        Button(
-            onClick = { /* TODO */ }
-        ) {
-            Text(text = "Submit")
-        }
+        Text(
+            text = "Having fun?"
+        )
     }
 }
 
