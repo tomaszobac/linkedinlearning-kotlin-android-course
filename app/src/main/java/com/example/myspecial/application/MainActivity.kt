@@ -4,7 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -14,6 +15,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.myspecial.application.ui.theme.MySpecialApplicationTheme
@@ -37,26 +39,28 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier) {
-    Box(
-        contentAlignment = Alignment.BottomEnd,
-        modifier = modifier.height(400.dp)
+    Column(
+        modifier = modifier.height(400.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
     ) {
         Text(
             text = "Hello $name!",
             style = MaterialTheme.typography.headlineLarge
         )
         Text(
-            text = "Having fun?"
+            text = "Having fun?",
         )
     }
 }
 
 @Preview(
     showBackground = true,
-    device = "spec:width=720px,height=1080px,dpi=440"
+    device = Devices.NEXUS_5,
+    name = "Nexus 5"
 )
 @Composable
-fun GreetingPreview() {
+fun MyComposableNexusPreview() {
     MySpecialApplicationTheme {
         Greeting(
             name = "Android",
@@ -67,9 +71,11 @@ fun GreetingPreview() {
 
 @Preview(
     showBackground = true,
+    device = Devices.PIXEL_4_XL,
+    name = "Pixel 4 XL"
 )
 @Composable
-fun GreetingLearnersPreview() {
+fun MyComposablePixelPreview() {
     MySpecialApplicationTheme {
         Greeting(
             name = "Learners",
