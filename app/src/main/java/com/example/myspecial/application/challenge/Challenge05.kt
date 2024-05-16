@@ -1,17 +1,21 @@
 package com.example.myspecial.application.challenge
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -24,8 +28,9 @@ import com.example.myspecial.application.ui.theme.MySpecialApplicationTheme
 @Composable
 fun MyComposable() {
     Column(
-        modifier = Modifier.fillMaxSize()
-        // choose the correct alignments
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
             painter = painterResource(id = R.drawable.logo),
@@ -35,25 +40,28 @@ fun MyComposable() {
             contentScale = ContentScale.Crop,
             contentDescription = "App logo"
         )
-        Column(
+        Row(
             modifier = Modifier.fillMaxWidth(),
-            // choose the correct alignments
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Icon(
-                imageVector = , // choose the correct icon
+                imageVector = Icons.Filled.ShoppingCart,
                 contentDescription = "Shopping cart icon",
             )
             Text(
-                text = "<Update me!>",
+                text = "Free shipping on all orders",
                 modifier = Modifier.padding(16.dp),
             )
         }
         Button(
-            modifier = , // should expand horizontally and have padding
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
             onClick = { /* Ignore */ }
         ) {
             Text(
-                text = "<Update me!>",
+                text = "Let's go!",
                 fontWeight = FontWeight.Bold,
                 style = MaterialTheme.typography.headlineMedium
             )
