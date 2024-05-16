@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.myspecial.application.ui.theme.MySpecialApplicationTheme
 
 class MainActivity : ComponentActivity() {
@@ -50,6 +51,7 @@ fun Greeting(name: String, modifier: Modifier) {
         )
         Text(
             text = "Having fun?",
+            fontSize = 40.sp
         )
     }
 }
