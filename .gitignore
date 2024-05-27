@@ -4,3 +4,6 @@ node_modules
 npm-debug.log
 local.properties
 .gradle
+.idea/other.xml
+.idea/studiobot.xml
+.idea/deploymentTargetSelector.xml
