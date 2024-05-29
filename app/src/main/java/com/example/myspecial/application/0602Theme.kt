@@ -28,6 +28,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.myspecial.application.ui.theme.AppTheme
 import com.example.myspecial.application.ui.theme.MySpecialApplicationTheme
 
 @Composable
@@ -101,6 +102,18 @@ fun ThemeComposable(modifier: Modifier = Modifier) {
 @Composable
 fun ThemeComposablePixelPreview() {
     MySpecialApplicationTheme {
+        ThemeComposable()
+    }
+}
+
+@Preview(
+    showBackground = true,
+    device = Devices.PIXEL_4_XL,
+    name = "Pixel 4 XL"
+)
+@Composable
+fun NewThemeComposablePixelPreview() {
+    AppTheme {
         ThemeComposable()
     }
 }
