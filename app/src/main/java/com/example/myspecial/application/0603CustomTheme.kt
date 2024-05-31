@@ -3,20 +3,24 @@ package com.example.myspecial.application
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
@@ -79,7 +83,7 @@ fun ThemeComposable2(modifier: Modifier = Modifier) {
 
         Spacer(Modifier.size(24.dp))
 
-        Button(
+        CustomButton(
             modifier = Modifier
                 .padding(16.dp)
                 .fillMaxWidth(),
@@ -91,6 +95,20 @@ fun ThemeComposable2(modifier: Modifier = Modifier) {
             )
         }
     }
+}
+
+@Composable
+fun CustomButton(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    content: @Composable RowScope.() -> Unit
+) {
+    Button(
+        shape = CutCornerShape(70),
+        onClick = onClick,
+        modifier = modifier,
+        content = content
+    )
 }
 
 @Preview(
