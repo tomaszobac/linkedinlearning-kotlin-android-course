@@ -1,9 +1,13 @@
 package com.example.myspecial.application.lessons
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -28,7 +32,35 @@ fun TextEntryComposable(modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-
+        TextField(
+            value = email,
+            onValueChange = { email = it },
+            label = {
+                Text(text = "Email")
+            },
+            placeholder = {
+                Text(text = "Enter your email address")
+            }
+        )
+        TextField(
+            value = password,
+            onValueChange = { password = it },
+            label = {
+                Text(text = "Password")
+            },
+            placeholder = {
+                Text(text = "Enter your password")
+            }
+        )
+        Button(
+            onClick = {
+                Log.i("TextEntryComposable", "email: $email, password: $password")
+            }
+        ) {
+            Text (
+                text = "Submit"
+            )
+        }
     }
 }
 
