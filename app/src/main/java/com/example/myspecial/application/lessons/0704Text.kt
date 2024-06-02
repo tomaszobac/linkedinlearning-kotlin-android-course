@@ -1,6 +1,7 @@
 package com.example.myspecial.application.lessons
 
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,15 +16,20 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.myspecial.application.R
 import com.example.myspecial.application.ui.theme.AppTheme
 
 @Composable
 fun StringPlaceholderComposable(modifier: Modifier = Modifier) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    val message = stringResource(R.string.message_text, email, password)
 
     Column(
         modifier = modifier
@@ -52,9 +58,13 @@ fun StringPlaceholderComposable(modifier: Modifier = Modifier) {
                 Text(text = "Enter your password")
             }
         )
+        val context = LocalContext.current
+        val controller = LocalSoftwareKeyboardController.current
         Button(
             onClick = {
-                Log.i("StringPlaceholderComposable", "email: $email, password: $password")
+                controller?.hide()
+                Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+                Log.i("StringPlaceholderComposable", message)
             }
         ) {
             Text (
