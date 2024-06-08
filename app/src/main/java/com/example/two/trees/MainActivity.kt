@@ -44,7 +44,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun TwoTreesApp() {
     var checked by remember { mutableStateOf(true) }
-    val imageId = if (checked) R.drawable.logo else R.drawable.olive_branch
+    val imageId = if (checked) R.drawable.medium_olive_oil else R.drawable.olive_branch
 
     AppTheme {
         Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
