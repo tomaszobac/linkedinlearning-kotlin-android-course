@@ -4,28 +4,26 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.myspecial.application.R
+import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.example.two.trees.ui.theme.AppTheme
 
 class MainActivity : ComponentActivity() {
@@ -38,31 +36,15 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TwoTreesApp() {
     AppTheme {
         Scaffold(
             modifier = Modifier.fillMaxSize(),
-            topBar = {
-                TopAppBar(
-                    title = {
-                        Text(stringResource(R.string.app_name))
-                    },
-                    colors = TopAppBarDefaults.topAppBarColors(
-                        containerColor = MaterialTheme.colorScheme.primary,
-                        titleContentColor = MaterialTheme.colorScheme.onPrimary,
-                        navigationIconContentColor = MaterialTheme.colorScheme.onPrimary
-                    ),
-                    navigationIcon = {
-                        Icon(
-                            painter = painterResource(R.drawable.ic_logo),
-                            contentDescription = null
-                        )
-                    }
-                )
-            }
         ) { innerPadding ->
+            val image1 = "https://bit.ly/android_dev_image1"
+            val image2 = "https://bit.ly/android_dev_image2"
+
             Column(
                 modifier = Modifier
                     .fillMaxSize()
@@ -70,14 +52,45 @@ fun TwoTreesApp() {
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Image(
-                    painter = painterResource(R.drawable.olive_branch_vector),
-                    modifier = Modifier.fillMaxWidth(),
+                SwitchWithLabel(
+                    checked = , // TODO: added needed variable
+                    onCheckedChange = {
+                        // TODO: change state of checked variable
+                    },
+                    label = "Toggle images"
+                )
+
+                Spacer(modifier = Modifier.height(32.dp))
+
+                AsyncImage(
+                    model = , // TODO: display correct image,
+                    modifier = Modifier.size(300.dp),
                     contentScale = ContentScale.Fit,
-                    contentDescription = null
+                    contentDescription = "friendly robot"
                 )
             }
         }
+    }
+}
+
+@Composable
+fun SwitchWithLabel(
+    checked: Boolean,
+    onCheckedChange: (Boolean) -> Unit,
+    label: String
+) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Switch(
+            checked = checked,
+            onCheckedChange = onCheckedChange
+        )
+        Text(
+            text = label,
+            style = MaterialTheme.typography.titleLarge,
+            modifier = Modifier.padding(start = 8.dp)
+        )
     }
 }
 
