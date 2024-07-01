@@ -7,9 +7,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -25,6 +28,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.myspecial.application.R
 import com.example.two.trees.ui.theme.AppTheme
 
@@ -70,12 +74,30 @@ fun TwoTreesApp() {
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+                var imageId = R.drawable.olive_branch_vector
+
                 Image(
-                    painter = painterResource(R.drawable.olive_branch_vector),
+                    painter = painterResource(imageId),
                     modifier = Modifier.fillMaxWidth(),
                     contentScale = ContentScale.Fit,
                     contentDescription = null
                 )
+
+                Spacer(modifier = Modifier.height(24.dp))
+
+                Button(
+                    onClick = {
+                        imageId = if (imageId == R.drawable.olive_branch_vector)
+                            R.drawable.logo
+                        else
+                            R.drawable.olive_branch_vector
+                    }
+                ) {
+                    Text(
+                        text = "Swap image",
+                        style = MaterialTheme.typography.titleLarge
+                    )
+                }
             }
         }
     }
