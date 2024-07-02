@@ -13,13 +13,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableIntStateOf
@@ -28,11 +24,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.myspecial.application.R
+import com.example.two.trees.ui.compose.TwoTreesAppBar
 import com.example.two.trees.ui.theme.AppTheme
 
 class MainActivity : ComponentActivity() {
@@ -45,63 +41,56 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TwoTreesApp() {
     AppTheme {
         Scaffold(
             modifier = Modifier.fillMaxSize(),
             topBar = {
-                TopAppBar(
-                    title = {
-                        Text(stringResource(R.string.app_name))
-                    },
-                    colors = TopAppBarDefaults.topAppBarColors(
-                        containerColor = MaterialTheme.colorScheme.primary,
-                        titleContentColor = MaterialTheme.colorScheme.onPrimary,
-                        navigationIconContentColor = MaterialTheme.colorScheme.onPrimary
-                    ),
-                    navigationIcon = {
-                        Icon(
-                            painter = painterResource(R.drawable.ic_logo),
-                            contentDescription = null
-                        )
-                    }
-                )
+                TwoTreesAppBar()
             }
         ) { innerPadding ->
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(innerPadding),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                var imageId: MutableState<Int> = remember { mutableIntStateOf(R.drawable.olive_branch_vector) }
+            ImageSwapper(
+                modifier = Modifier.padding(innerPadding),
+            )
+        }
+    }
+}
 
-                Image(
-                    painter = painterResource(imageId.value),
-                    modifier = Modifier.fillMaxWidth(),
-                    contentScale = ContentScale.Fit,
-                    contentDescription = null
-                )
+@Composable
+fun ImageSwapper(
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        val imageId: MutableState<Int> = remember {
+            mutableIntStateOf(R.drawable.olive_branch_vector)
+        }
 
-                Spacer(modifier = Modifier.height(24.dp))
+        Image(
+            painter = painterResource(imageId.value),
+            modifier = Modifier.fillMaxWidth(),
+            contentScale = ContentScale.Fit,
+            contentDescription = null
+        )
 
-                Button(
-                    onClick = {
-                        imageId.value = if (imageId.value == R.drawable.olive_branch_vector)
-                            R.drawable.logo
-                        else
-                            R.drawable.olive_branch_vector
-                    }
-                ) {
-                    Text(
-                        text = "Swap image",
-                        style = MaterialTheme.typography.titleLarge
-                    )
-                }
+        Spacer(modifier = Modifier.height(24.dp))
+
+        Button(
+            onClick = {
+                imageId.value = if (imageId.value == R.drawable.olive_branch_vector)
+                    R.drawable.logo
+                else
+                    R.drawable.olive_branch_vector
             }
+        ) {
+            Text(
+                text = "Swap image",
+                style = MaterialTheme.typography.titleLarge
+            )
         }
     }
 }
