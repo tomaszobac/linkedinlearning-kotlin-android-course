@@ -21,6 +21,9 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -74,10 +77,10 @@ fun TwoTreesApp() {
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                var imageId = R.drawable.olive_branch_vector
+                var imageId: MutableState<Int> = remember { mutableIntStateOf(R.drawable.olive_branch_vector) }
 
                 Image(
-                    painter = painterResource(imageId),
+                    painter = painterResource(imageId.value),
                     modifier = Modifier.fillMaxWidth(),
                     contentScale = ContentScale.Fit,
                     contentDescription = null
@@ -87,7 +90,7 @@ fun TwoTreesApp() {
 
                 Button(
                     onClick = {
-                        imageId = if (imageId == R.drawable.olive_branch_vector)
+                        imageId.value = if (imageId.value == R.drawable.olive_branch_vector)
                             R.drawable.logo
                         else
                             R.drawable.olive_branch_vector
