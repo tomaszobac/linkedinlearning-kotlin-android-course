@@ -50,28 +50,58 @@ fun TwoTreesApp() {
                 TwoTreesAppBar()
             }
         ) { innerPadding ->
-            ImageSwapper(
-                modifier = Modifier.padding(innerPadding),
-            )
+            val imageId: MutableState<Int> = remember {
+                mutableIntStateOf(R.drawable.olive_branch_vector)
+            }
+
+            val imageId2: MutableState<Int> = remember {
+                mutableIntStateOf(R.drawable.logo)
+            }
+
+            Column(
+                modifier = Modifier.fillMaxSize()
+            ) {
+
+                ImageSwapper(
+                    modifier = Modifier.padding(innerPadding),
+                    imageId = imageId.value,
+                    swapImages = {
+                        imageId.value = if (imageId.value == R.drawable.olive_branch_vector)
+                            R.drawable.logo
+                        else
+                            R.drawable.olive_branch_vector
+                    }
+                )
+
+                ImageSwapper(
+                    modifier = Modifier.padding(innerPadding),
+                    imageId = imageId2.value,
+                    swapImages = {
+                        imageId2.value = if (imageId2.value == R.drawable.logo)
+                            R.drawable.olive_branch_vector
+                        else
+                            R.drawable.logo
+                    }
+                )
+            }
         }
     }
 }
 
 @Composable
 fun ImageSwapper(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    imageId: Int,
+    swapImages: () -> Unit
 ) {
     Column(
-        modifier = modifier.fillMaxSize(),
+        modifier = modifier,
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        val imageId: MutableState<Int> = remember {
-            mutableIntStateOf(R.drawable.olive_branch_vector)
-        }
 
         Image(
-            painter = painterResource(imageId.value),
+            painter = painterResource(imageId),
             modifier = Modifier.fillMaxWidth(),
             contentScale = ContentScale.Fit,
             contentDescription = null
@@ -80,12 +110,7 @@ fun ImageSwapper(
         Spacer(modifier = Modifier.height(24.dp))
 
         Button(
-            onClick = {
-                imageId.value = if (imageId.value == R.drawable.olive_branch_vector)
-                    R.drawable.logo
-                else
-                    R.drawable.olive_branch_vector
-            }
+            onClick = swapImages
         ) {
             Text(
                 text = "Swap image",
