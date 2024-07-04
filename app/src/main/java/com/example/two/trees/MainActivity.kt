@@ -89,7 +89,7 @@ fun StateApp() {
                     modifier = Modifier.padding(innerPadding),
                     guess = guess,
                     guessChanged = { newGuess ->
-                        guess = newGuess
+                        // TODO: update the previous guess
                     },
                     checkGuess = {
                         guessedState = states.find { it == guess }
@@ -100,6 +100,43 @@ fun StateApp() {
 
                 DisplayStates(states = states, guessedState = guessedState)
             }
+        }
+    }
+}
+
+@Composable
+fun EnterGuess(
+    modifier: Modifier = Modifier,
+    guess: String,
+    guessChanged: (String) -> Unit,
+    checkGuess: () -> Unit
+) {
+    Column(
+        modifier = modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        TextField(
+            value = guess,
+            onValueChange = {
+                // TODO: call correct parameter
+            },
+            placeholder = {
+                Text("Enter a state")
+            }
+        )
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        Button(
+            onClick = {
+                // TODO: call correct parameter
+            }
+        ) {
+            Text(
+                text = "Make your guess",
+                style = MaterialTheme.typography.titleLarge
+            )
         }
     }
 }
@@ -136,39 +173,6 @@ fun DisplayStates(
                     style = MaterialTheme.typography.labelLarge
                 )
             }
-        }
-    }
-}
-
-@Composable
-fun EnterGuess(
-    modifier: Modifier = Modifier,
-    guess: String,
-    guessChanged: (String) -> Unit,
-    checkGuess: () -> Unit
-) {
-    Column(
-        modifier = modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        TextField(
-            value = guess,
-            onValueChange = guessChanged,
-            placeholder = {
-                Text("Enter a state")
-            }
-        )
-
-        Spacer(modifier = Modifier.height(24.dp))
-
-        Button(
-            onClick = checkGuess
-        ) {
-            Text(
-                text = "Make your guess",
-                style = MaterialTheme.typography.titleLarge
-            )
         }
     }
 }
