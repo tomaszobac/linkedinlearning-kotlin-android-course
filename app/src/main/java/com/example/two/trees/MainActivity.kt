@@ -105,6 +105,39 @@ fun StateApp() {
 }
 
 @Composable
+fun EnterGuess(
+    modifier: Modifier = Modifier,
+    guess: String,
+    guessChanged: (String) -> Unit,
+    checkGuess: () -> Unit
+) {
+    Column(
+        modifier = modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        TextField(
+            value = guess,
+            onValueChange = guessChanged,
+            placeholder = {
+                Text("Enter a state")
+            }
+        )
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        Button(
+            onClick = checkGuess
+        ) {
+            Text(
+                text = "Make your guess",
+                style = MaterialTheme.typography.titleLarge
+            )
+        }
+    }
+}
+
+@Composable
 fun DisplayStates(
     modifier: Modifier = Modifier,
     states: List<String>,
@@ -136,39 +169,6 @@ fun DisplayStates(
                     style = MaterialTheme.typography.labelLarge
                 )
             }
-        }
-    }
-}
-
-@Composable
-fun EnterGuess(
-    modifier: Modifier = Modifier,
-    guess: String,
-    guessChanged: (String) -> Unit,
-    checkGuess: () -> Unit
-) {
-    Column(
-        modifier = modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        TextField(
-            value = guess,
-            onValueChange = guessChanged,
-            placeholder = {
-                Text("Enter a state")
-            }
-        )
-
-        Spacer(modifier = Modifier.height(24.dp))
-
-        Button(
-            onClick = checkGuess
-        ) {
-            Text(
-                text = "Make your guess",
-                style = MaterialTheme.typography.titleLarge
-            )
         }
     }
 }
