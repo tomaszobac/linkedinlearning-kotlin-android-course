@@ -20,11 +20,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.two.trees.ui.compose.TwoTreesAppBar
 import com.example.two.trees.ui.theme.AppTheme
-import kotlin.random.Random
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +45,7 @@ fun TwoTreesApp() {
                 TwoTreesAppBar()
             }
         ) { innerPadding ->
+            val viewModel = viewModel<MainViewModel>()
             var productImageId by remember {
                 mutableIntStateOf(R.drawable.logo)
             }
@@ -62,21 +63,11 @@ fun TwoTreesApp() {
                         .build(),
                     contentDescription = null,
                     modifier = Modifier.clickable {
-                        productImageId = generateNewImageId()
+                        productImageId = viewModel.generateNewImageId()
                     }
                 )
             }
         }
-    }
-}
-
-fun generateNewImageId(): Int {
-    return when(Random.nextInt(4)) {
-        0 -> R.drawable.delicate_olive_oil
-        1 -> R.drawable.lemon_olive_oil
-        2 -> R.drawable.chili_olive_oil
-        3 -> R.drawable.basil_olive_oil
-        else -> R.drawable.logo
     }
 }
 
