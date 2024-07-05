@@ -22,7 +22,6 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.example.myspecial.application.R
 import com.example.two.trees.ui.compose.TwoTreesAppBar
 import com.example.two.trees.ui.theme.AppTheme
 import kotlin.random.Random

@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.myspecial.application"
+    namespace = "com.example.two.trees"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.myspecial.application"
+        applicationId = "com.example.two.trees"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -48,7 +48,7 @@ android {
 
 dependencies {
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
@@ -56,6 +56,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.coil.compose)
+    implementation(libs.androidx.lifecycle.viewModel.compose)
 
     testImplementation(libs.junit)
 

@@ -9,7 +9,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import com.example.myspecial.application.R
+import com.example.two.trees.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
