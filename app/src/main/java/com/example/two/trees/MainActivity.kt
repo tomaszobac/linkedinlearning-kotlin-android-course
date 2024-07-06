@@ -40,7 +40,7 @@ fun TwoTreesApp() {
         Scaffold(
             modifier = Modifier.fillMaxSize(),
             topBar = {
-                TwoTreesAppBar()
+                TwoTreesAppBar(appName = R.string.app_name)
             }
         ) { innerPadding ->
             val viewModel = viewModel<MainViewModel>()
