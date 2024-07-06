@@ -48,8 +48,7 @@ fun Challenge10App() {
             }
         ) { innerPadding ->
             val viewModel = viewModel<Challenge10ViewModel>()
-            val quantity by viewModel.quantity.collectAsStateWithLifecycle()
-            val totalAmount by viewModel.totalAmount.collectAsStateWithLifecycle()
+            // TODO: create missing variables
 
             Column(
                 modifier = Modifier
