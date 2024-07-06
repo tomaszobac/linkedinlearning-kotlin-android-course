@@ -2,19 +2,24 @@ package com.example.two.trees
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlin.random.Random
 
 private const val TAG = "MainViewModel"
 
 class MainViewModel : ViewModel() {
 
+    private val _productImageId = MutableStateFlow(R.drawable.logo)
+    val productImageId: StateFlow<Int> = _productImageId
+
     init {
         Log.i(TAG, "initialized")
     }
 
-    fun generateNewImageId(): Int {
+    fun generateNewImageId() {
         Log.i(TAG, "generateNewImageId")
-        return when(Random.nextInt(4)) {
+        _productImageId.value = when(Random.nextInt(4)) {
             0 -> R.drawable.delicate_olive_oil
             1 -> R.drawable.lemon_olive_oil
             2 -> R.drawable.chili_olive_oil
