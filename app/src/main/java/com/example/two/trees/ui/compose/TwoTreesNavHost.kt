@@ -17,7 +17,11 @@ fun TwoTreesNavHost(
         modifier = modifier
     ) {
         composable(route = "home") {
-            HomeScreen()
+            HomeScreen(
+                takeTourClick = {
+                    navController.navigate("tours")
+                }
+            )
         }
         composable(route = "tours") {
             ToursScreen()
