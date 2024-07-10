@@ -14,8 +14,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.two.trees.ui.compose.HomeScreen
+import androidx.navigation.compose.rememberNavController
 import com.example.two.trees.ui.compose.TwoTreesAppBar
+import com.example.two.trees.ui.compose.TwoTreesNavHost
 import com.example.two.trees.ui.theme.AppTheme
 
 class MainActivity : ComponentActivity() {
@@ -43,9 +44,11 @@ fun TwoTreesApp() {
                 )
             }
         ) { innerPadding ->
-            HomeScreen(
+            val navController = rememberNavController()
+
+            TwoTreesNavHost(
+                navController = navController,
                 modifier = Modifier.padding(innerPadding)
-                    .fillMaxSize()
             )
         }
     }
