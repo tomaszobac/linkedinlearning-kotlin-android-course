@@ -57,6 +57,7 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.coil.compose)
     implementation(libs.androidx.lifecycle.viewModel.compose)
+    implementation(libs.androidx.compose.navigation)
 
     testImplementation(libs.junit)
 
