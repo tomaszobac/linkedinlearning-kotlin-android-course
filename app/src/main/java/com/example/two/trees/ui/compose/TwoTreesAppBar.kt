@@ -23,6 +23,7 @@ fun TwoTreesAppBar(
     shareWithFriends: () -> Unit
 ) {
     TopAppBar(
+        modifier = modifier,
         title = {
             Text(stringResource(appName))
         },
