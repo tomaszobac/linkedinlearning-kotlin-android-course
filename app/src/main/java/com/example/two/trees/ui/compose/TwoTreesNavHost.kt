@@ -26,5 +26,8 @@ fun TwoTreesNavHost(
         composable(route = "tours") {
             ToursScreen()
         }
+        composable(route = "shop") {
+            ShopScreen()
+        }
     }
 }
