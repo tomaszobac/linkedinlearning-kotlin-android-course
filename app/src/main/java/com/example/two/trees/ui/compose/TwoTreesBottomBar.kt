@@ -9,8 +9,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 
 @Composable
-fun TwoTreesBottomBar(modifier: Modifier = Modifier) {
-    NavigationBar {
+fun TwoTreesBottomBar(
+    modifier: Modifier = Modifier
+) {
+    NavigationBar(modifier = modifier) {
         screens.forEach { screen ->
             val label = stringResource(id = screen.labelResourceId)
             NavigationBarItem(
