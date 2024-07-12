@@ -16,6 +16,7 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import com.example.two.trees.ui.compose.TwoTreesAppBar
+import com.example.two.trees.ui.compose.TwoTreesBottomBar
 import com.example.two.trees.ui.compose.TwoTreesNavHost
 import com.example.two.trees.ui.theme.AppTheme
 
@@ -42,6 +43,9 @@ fun TwoTreesApp() {
                         shareWithFriends(context)
                     }
                 )
+            },
+            bottomBar = {
+                TwoTreesBottomBar()
             }
         ) { innerPadding ->
             val navController = rememberNavController()
