@@ -33,6 +33,8 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun TwoTreesApp() {
     AppTheme {
+        val navController = rememberNavController()
+
         Scaffold(
             modifier = Modifier.fillMaxSize(),
             topBar = {
@@ -45,11 +47,11 @@ fun TwoTreesApp() {
                 )
             },
             bottomBar = {
-                TwoTreesBottomBar()
+                TwoTreesBottomBar(
+                    navController = navController
+                )
             }
         ) { innerPadding ->
-            val navController = rememberNavController()
-
             TwoTreesNavHost(
                 navController = navController,
                 modifier = Modifier.padding(innerPadding)
