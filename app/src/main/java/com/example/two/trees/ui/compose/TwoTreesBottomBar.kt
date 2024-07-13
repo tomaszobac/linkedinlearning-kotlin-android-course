@@ -10,18 +10,25 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
+import com.example.two.trees.MainViewModel
 
 @Composable
 fun TwoTreesBottomBar(
     navController: NavHostController,
     currentDestination: NavDestination?,
+    viewModel: MainViewModel,
     modifier: Modifier = Modifier
 ) {
     NavigationBar(modifier = modifier) {
+        // TODO: create a variable that has the current quantity
+
         screens.forEach { screen ->
             val label = stringResource(id = screen.labelResourceId)
             NavigationBarItem(
                 icon = {
+                    // TODO: update the icon to be a badged icon
+                    // TODO: only display badge when quantity not zero
+                    // TODO: and only on the shop screen
                     Icon(
                         imageVector = screen.icon,
                         contentDescription = label

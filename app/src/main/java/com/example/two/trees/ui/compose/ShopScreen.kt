@@ -37,7 +37,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.two.trees.MainViewModel
 import com.example.two.trees.R
 import com.example.two.trees.ui.theme.AppTheme
@@ -45,9 +44,9 @@ import com.example.two.trees.ui.theme.accent
 
 @Composable
 fun ShopScreen(
+    viewModel: MainViewModel,
     modifier: Modifier = Modifier,
 ) {
-    val viewModel = viewModel<MainViewModel>()
     val quantity by viewModel.quantity.collectAsStateWithLifecycle()
     val totalAmount by viewModel.totalAmount.collectAsStateWithLifecycle()
 
@@ -192,6 +191,6 @@ fun FreeShipping(modifier: Modifier = Modifier) {
 @Composable
 fun ShopScreenPreview() {
     AppTheme {
-        ShopScreen()
+        ShopScreen(viewModel = MainViewModel())
     }
 }
