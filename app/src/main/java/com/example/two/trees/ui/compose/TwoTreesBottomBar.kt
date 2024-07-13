@@ -33,7 +33,9 @@ fun TwoTreesBottomBar(
                     BadgedBox(
                         badge = {
                             if (quantity != 0 && screen.route == Screen.Shop.route) {
-                                Badge { Text(quantity.toString()) }
+                                Badge {
+                                    Text(quantity.toString())
+                                }
                             }
                         }
                     ) {
