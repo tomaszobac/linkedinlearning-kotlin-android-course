@@ -7,11 +7,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavDestination
+import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
 
 @Composable
 fun TwoTreesBottomBar(
     navController: NavHostController,
+    currentDestination: NavDestination?,
     modifier: Modifier = Modifier
 ) {
     NavigationBar(modifier = modifier) {
@@ -27,9 +30,12 @@ fun TwoTreesBottomBar(
                 label = {
                     Text(label)
                 },
-                selected = false,
+                selected = currentDestination?.hierarchy?.any {
+                    it.route == screen.route
+                } == true,
                 onClick = {
                     navController.navigate(screen.route) {
+                        popUpTo(navController.graph.startDestinationId)
                         launchSingleTop = true
                     }
                 }

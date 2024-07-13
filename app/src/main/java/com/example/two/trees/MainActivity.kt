@@ -10,10 +10,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.two.trees.ui.compose.TwoTreesAppBar
 import com.example.two.trees.ui.compose.TwoTreesBottomBar
@@ -34,6 +36,8 @@ class MainActivity : ComponentActivity() {
 fun TwoTreesApp() {
     AppTheme {
         val navController = rememberNavController()
+        val navBackStackEntry by navController.currentBackStackEntryAsState()
+        val currentDestination = navBackStackEntry?.destination
 
         Scaffold(
             modifier = Modifier.fillMaxSize(),
@@ -48,7 +52,8 @@ fun TwoTreesApp() {
             },
             bottomBar = {
                 TwoTreesBottomBar(
-                    navController = navController
+                    navController = navController,
+                    currentDestination = currentDestination
                 )
             }
         ) { innerPadding ->
