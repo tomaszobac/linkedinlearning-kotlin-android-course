@@ -28,10 +28,12 @@ class MainViewModel(
         Log.i(TAG, "initialized")
         Log.i(TAG, product.toString())
 
-        val data = productRepository.getTextFromAssets(
+        val data = productRepository.getProducts(
             filename = "olive_oils_data.json"
         )
-        Log.i(TAG, data)
+        data?.forEach {
+            Log.i(TAG, "Product name: ${it.name}")
+        }
     }
 
 }
