@@ -58,6 +58,7 @@ dependencies {
     implementation(libs.coil.compose)
     implementation(libs.androidx.lifecycle.viewModel.compose)
     implementation(libs.androidx.compose.navigation)
+    implementation(libs.moshi.kotlin)
 
     testImplementation(libs.junit)
 
