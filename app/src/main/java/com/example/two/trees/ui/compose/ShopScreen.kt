@@ -20,10 +20,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.two.trees.R
+import com.example.two.trees.data.Product
 import com.example.two.trees.ui.theme.AppTheme
 
 @Composable
 fun ShopScreen(
+    products: List<Product>,
     modifier: Modifier = Modifier,
 ) {
     LazyVerticalGrid(
@@ -42,7 +44,7 @@ fun ShopScreen(
             span = { GridItemSpan(currentLineSpan = 2) }
         ) {
             Text(
-                text = "",
+                text = products.joinToString(separator = "\n"),
             )
         }
     }
@@ -83,7 +85,23 @@ fun FreeShipping(modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun ShopScreenPreview() {
+    val products = listOf(
+        Product(
+            name = "Carla Montoya",
+            imageFile = "fabellas",
+            description = "varius",
+            size = 7963,
+            price = 14.15
+        ),
+        Product(
+            name = "Julia McCormick",
+            imageFile = "tristique",
+            description = "alterum",
+            size = 7143,
+            price = 18.19
+        )
+    )
     AppTheme {
-        ShopScreen()
+        ShopScreen(products = products)
     }
 }
