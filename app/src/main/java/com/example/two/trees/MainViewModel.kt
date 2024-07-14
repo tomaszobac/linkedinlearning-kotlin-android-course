@@ -1,11 +1,14 @@
 package com.example.two.trees
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import com.example.two.trees.data.Product
 import com.example.two.trees.data.ProductRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 
 private const val TAG = "MainViewModel"
 
@@ -19,11 +22,9 @@ class MainViewModel(
     val quantity: StateFlow<Int> = _quantity
 
     init {
-        val data = productRepository.getProducts(
-            filename = "olive_oils_data.json"
-        )
-        data?.let {
-            _products.value = it
+        viewModelScope.launch {
+            _products.value = productRepository.getProducts()
+            Log.i(TAG, _products.value.toString())
         }
     }
 
