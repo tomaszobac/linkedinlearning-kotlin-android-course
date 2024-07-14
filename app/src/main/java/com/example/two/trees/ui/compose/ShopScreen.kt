@@ -18,13 +18,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.two.trees.MainViewModel
 import com.example.two.trees.R
 import com.example.two.trees.ui.theme.AppTheme
 
 @Composable
 fun ShopScreen(
-    viewModel: MainViewModel,
     modifier: Modifier = Modifier,
 ) {
     LazyVerticalGrid(
@@ -78,6 +76,6 @@ fun FreeShipping(modifier: Modifier = Modifier) {
 @Composable
 fun ShopScreenPreview() {
     AppTheme {
-        ShopScreen(viewModel = MainViewModel())
+        ShopScreen()
     }
 }
