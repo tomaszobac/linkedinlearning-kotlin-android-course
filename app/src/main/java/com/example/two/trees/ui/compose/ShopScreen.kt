@@ -1,15 +1,11 @@
 package com.example.two.trees.ui.compose
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.GridItemSpan
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -28,33 +24,18 @@ fun ShopScreen(
     products: List<Product>,
     modifier: Modifier = Modifier,
 ) {
-    LazyVerticalGrid(
+    Row(
         modifier = modifier.fillMaxSize(),
-        columns = GridCells.Fixed(2),
-        contentPadding = PaddingValues(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        item {
-            ShopLabel()
-        }
-        item {
-            FreeShipping()
-        }
-        item(
-            span = { GridItemSpan(currentLineSpan = 2) }
-        ) {
-            Text(
-                text = products.joinToString(separator = "\n"),
-            )
-        }
+        ShopLabel()
     }
 }
 
 @Composable
-private fun ShopLabel() {
+private fun ShopLabel(modifier: Modifier = Modifier) {
     Text(
         stringResource(R.string.shop_label).uppercase(),
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .padding(vertical = 16.dp),
         style = MaterialTheme.typography.headlineMedium,
