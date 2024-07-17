@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -36,7 +37,10 @@ fun ShopScreen(
 ) {
     LazyVerticalGrid(
         modifier = modifier.fillMaxSize(),
-        columns = GridCells.Fixed(2)
+        columns = GridCells.Fixed(2),
+        contentPadding = PaddingValues(16.dp),
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         item {
             ShopLabel()
@@ -45,9 +49,7 @@ fun ShopScreen(
             FreeShipping()
         }
         items(products) {
-            ElevatedCard {
-                Text(text = it.name)
-            }
+            ProductItem(product = it)
         }
     }
 }
@@ -124,6 +126,22 @@ fun ProductItem(
                 textAlign = TextAlign.Center,
             )
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun ProductItemPreview() {
+    AppTheme {
+        ProductItem(
+            product = Product(
+                name = "Avis",
+                imageFile = "nisl",
+                description = "mei",
+                size = 4363,
+                price = 6.7
+            )
+        )
     }
 }
 

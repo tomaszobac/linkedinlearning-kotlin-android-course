@@ -9,7 +9,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 
 interface ProductApi {
-    @GET("olive_oils_data.json")
+    @GET("olive_oils_with_images_data.json")
     suspend fun getProducts(): Response<List<Product>>
 }
 
