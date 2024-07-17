@@ -1,5 +1,6 @@
 package com.example.two.trees.ui.compose
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -8,6 +9,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.two.trees.MainViewModel
+import com.example.two.trees.data.Product
+
+private const val TAG = "TwoTreesNavHost"
 
 @Composable
 fun TwoTreesNavHost(
@@ -33,7 +37,12 @@ fun TwoTreesNavHost(
             ToursScreen()
         }
         composable(route = Screen.Shop.route) {
-            ShopScreen(products = products)
+            ShopScreen(
+                products = products,
+                onProductClick = { product: Product ->
+                    Log.i(TAG, "The selected product: $product")
+                }
+            )
         }
     }
 }
