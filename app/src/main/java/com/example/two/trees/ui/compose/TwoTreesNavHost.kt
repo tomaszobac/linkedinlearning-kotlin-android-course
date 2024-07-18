@@ -41,8 +41,12 @@ fun TwoTreesNavHost(
                 products = products,
                 onProductClick = { product: Product ->
                     Log.i(TAG, "The selected product: $product")
+                    navController.navigate(Screen.Product.route)
                 }
             )
+        }
+        composable(route = Screen.Product.route) {
+            ProductScreen(product = products.first())
         }
     }
 }
