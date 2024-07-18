@@ -1,7 +1,6 @@
 package com.example.two.trees.data
 
 import android.content.Context
-import android.util.Log
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -43,28 +42,9 @@ class ProductRepository(private val context: Context) {
         file.writeText(fileContents, Charsets.UTF_8)
     }
 
-    private fun readDataFromFile(): List<Product> {
-        val file = File(context.cacheDir, "products.json")
-        val json = if (file.exists()) file.readText() else null
-
-        return if (json == null)
-            emptyList()
-        else {
-            val listType = Types.newParameterizedType(List::class.java, Product::class.java)
-            moshi.adapter<List<Product>>(listType).fromJson(json).orEmpty()
-        }
-    }
-
     suspend fun getProducts(): List<Product> {
-        val productsFromCache = readDataFromFile()
-        if (productsFromCache.isNotEmpty()) {
-            Log.i("ProductRepository", "loaded from cache")
-            return productsFromCache
-        }
-
         val response = productApi.getProducts()
         return if (response.isSuccessful) {
-            Log.i("ProductRepository", "loaded from webservice")
             val products = response.body()
             products?.let{ storeDataInFile(it) }
             products.orEmpty()
