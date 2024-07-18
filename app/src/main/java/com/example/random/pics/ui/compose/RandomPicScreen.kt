@@ -33,6 +33,7 @@ import com.example.random.pics.ui.theme.RandomPicAppTheme
 fun RandomPicScreen(
     pics: List<Picture>,
     displayImages: () -> Unit,
+    onPictureClick: (picture: Picture) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(modifier = modifier.fillMaxSize()) {
@@ -41,7 +42,10 @@ fun RandomPicScreen(
         }
 
         items(pics) { pic ->
-            PictureItem(pic = pic)
+            PictureItem(
+                pic = pic,
+                onPictureClick = onPictureClick
+            )
         }
     }
 }
@@ -66,9 +70,13 @@ fun DisplayRandomImages(
 @Composable
 private fun PictureItem(
     pic: Picture,
+    onPictureClick: (picture: Picture) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    ElevatedCard(modifier = modifier.padding(16.dp)) {
+    ElevatedCard(
+        modifier = modifier.padding(16.dp),
+        onClick = { onPictureClick(pic) }
+    ) {
         Row(
             modifier = Modifier.padding(vertical = 8.dp),
             horizontalArrangement = Arrangement.Center,
@@ -119,6 +127,10 @@ fun RandomPicScreenPreview() {
         )
     )
     RandomPicAppTheme {
-        RandomPicScreen(pics = pics, displayImages = {})
+        RandomPicScreen(
+            pics = pics,
+            displayImages = {},
+            onPictureClick = {}
+        )
     }
 }

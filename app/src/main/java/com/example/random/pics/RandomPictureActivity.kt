@@ -8,13 +8,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.random.pics.data.PictureRepository
-import com.example.random.pics.ui.compose.RandomPicScreen
 import com.example.random.pics.ui.compose.RandomPicsAppBar
+import com.example.random.pics.ui.compose.RandomPicsNavHost
 import com.example.random.pics.ui.theme.RandomPicAppTheme
 
 class RandomPictureActivity : ComponentActivity() {
@@ -34,16 +30,7 @@ fun RandomPictureApp() {
             modifier = Modifier.fillMaxSize(),
             topBar = { RandomPicsAppBar() }
         ) { innerPadding ->
-            val viewModel: RandomPictureViewModel = viewModel(
-                factory = RandomPictureViewModelFactory(
-                    pictureRepository = PictureRepository()
-                )
-            )
-            val pics by viewModel.pictures.collectAsStateWithLifecycle()
-
-            RandomPicScreen(
-                pics = pics,
-                displayImages = { viewModel.showRandomImage() },
+            RandomPicsNavHost(
                 modifier = Modifier.padding(innerPadding)
             )
         }

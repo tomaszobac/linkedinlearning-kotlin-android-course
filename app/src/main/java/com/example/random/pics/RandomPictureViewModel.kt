@@ -20,6 +20,8 @@ class RandomPictureViewModel(
 
     private val _randomPageNumber = MutableStateFlow(0)
 
+    // TODO: create StateFlows for the selected picture
+
     val pictures: StateFlow<List<Picture>> = _randomPageNumber
         .mapLatest { num ->
             pictureRepository.getPictures(page = num)
@@ -29,6 +31,8 @@ class RandomPictureViewModel(
     fun showRandomImage() {
         _randomPageNumber.value = Random.nextInt(0, 3)
     }
+
+    // TODO: create a function to update the selected picture
 
 }
 
