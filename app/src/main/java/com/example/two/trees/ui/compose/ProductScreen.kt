@@ -7,7 +7,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -28,7 +30,9 @@ import java.text.NumberFormat
 fun ProductScreen(
     product: Product,
     modifier: Modifier = Modifier,
-    scrollState: ScrollState = rememberScrollState()
+    scrollState: ScrollState = rememberScrollState(),
+    incrementQuantityClick: () -> Unit,
+    decrementQuantityClick: () -> Unit,
 ) {
     Column(
         modifier = modifier.fillMaxSize()
@@ -69,6 +73,20 @@ fun ProductScreen(
             style = MaterialTheme.typography.headlineSmall,
             fontWeight = FontWeight.Bold,
         )
+        Button(
+            onClick = incrementQuantityClick,
+            modifier = Modifier.fillMaxSize()
+                .padding(16.dp)
+        ) {
+            Text(stringResource(id = R.string.add_to_cart_label))
+        }
+        OutlinedButton(
+            onClick = decrementQuantityClick,
+            modifier = Modifier.fillMaxSize()
+                .padding(horizontal = 16.dp)
+        ) {
+            Text(stringResource(id = R.string.remove_from_cart_label))
+        }
     }
 }
 
@@ -83,7 +101,9 @@ fun ProductScreenPreview() {
                 description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
                 size = 22,
                 price = 20.3
-            )
+            ),
+            incrementQuantityClick = {},
+            decrementQuantityClick = {}
         )
     }
 }

@@ -49,7 +49,11 @@ fun TwoTreesNavHost(
         }
         composable(route = Screen.Product.route) {
             selectedProduct?.let {
-                ProductScreen(product = it)
+                ProductScreen(
+                    product = it,
+                    incrementQuantityClick = { viewModel.incrementQuantity() },
+                    decrementQuantityClick = { viewModel.decrementQuantity() },
+                )
             }
         }
     }

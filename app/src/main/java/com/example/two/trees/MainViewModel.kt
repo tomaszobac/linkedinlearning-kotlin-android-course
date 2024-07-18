@@ -35,6 +35,14 @@ class MainViewModel(
         _selectedProduct.value = product
     }
 
+    fun incrementQuantity() {
+        _quantity.value += 1
+    }
+
+    fun decrementQuantity() {
+        _quantity.value -= 1
+    }
+
 }
 
 class MainViewModelFactory(

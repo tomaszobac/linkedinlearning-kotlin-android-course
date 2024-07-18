@@ -61,6 +61,7 @@ dependencies {
     implementation(libs.moshi.kotlin)
     implementation(libs.retrofit)
     implementation(libs.converter.moshi)
+    implementation(libs.androidx.preferences.datastore)
 
     testImplementation(libs.junit)
 

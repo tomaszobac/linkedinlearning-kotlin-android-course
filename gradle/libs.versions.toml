@@ -11,6 +11,7 @@ coil = "2.6.0"
 navigation = "2.7.7"
 moshiKotlin = "1.12.0"
 retrofit = "2.9.0"
+datastore = "1.1.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -29,6 +30,7 @@ androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-man
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-compose-navigation= { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
+androidx-preferences-datastore = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref ="coil" }
 moshi-kotlin = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshiKotlin" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
