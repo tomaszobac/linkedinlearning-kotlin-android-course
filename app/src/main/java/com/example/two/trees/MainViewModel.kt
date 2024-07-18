@@ -18,6 +18,9 @@ class MainViewModel(
     private val _products = MutableStateFlow(emptyList<Product>())
     val products: StateFlow<List<Product>> = _products
 
+    private val _selectedProduct = MutableStateFlow<Product?>(null)
+    val selectedProduct: StateFlow<Product?> = _selectedProduct
+
     private val _quantity = MutableStateFlow(0)
     val quantity: StateFlow<Int> = _quantity
 
@@ -26,6 +29,10 @@ class MainViewModel(
             _products.value = productRepository.getProducts()
             Log.i(TAG, _products.value.toString())
         }
+    }
+
+    fun selectProduct(product: Product) {
+        _selectedProduct.value = product
     }
 
 }
