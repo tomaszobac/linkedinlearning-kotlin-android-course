@@ -44,7 +44,7 @@ fun TwoTreesApp() {
 
         val viewModel: MainViewModel = viewModel(
             factory = MainViewModelFactory(
-                ProductRepository()
+                ProductRepository(context = context)
             )
         )
 
