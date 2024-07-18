@@ -17,9 +17,11 @@ const val BASE_ENDPOINT_URL = "https://2873199.youcanlearnit.net/"
 
 class ProductRepository(private val context: Context) {
 
-    private val retrofit: Retrofit by lazy {
-        val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
+    private val moshi: Moshi by lazy {
+        Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
+    }
 
+    private val retrofit: Retrofit by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_ENDPOINT_URL)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
