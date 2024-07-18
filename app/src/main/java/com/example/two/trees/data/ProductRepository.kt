@@ -1,6 +1,7 @@
 package com.example.two.trees.data
 
 import android.content.Context
+import android.os.Environment
 import android.util.Log
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
@@ -35,16 +36,24 @@ class ProductRepository(private val context: Context) {
         retrofit.create(ProductApi::class.java)
     }
 
+    private fun isExternalStorageAvailable(): Boolean {
+     return Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED
+    }
+
     private fun storeDataInFile(products: List<Product>) {
+        if (!isExternalStorageAvailable()) return
+
         val listType = Types.newParameterizedType(List::class.java, Product::class.java)
         val fileContents = moshi.adapter<List<Product>>(listType).toJson(products)
 
-        val file = File(context.cacheDir, "products.json")
+        val file = File(context.getExternalFilesDir("products"), "products.json")
         file.writeText(fileContents, Charsets.UTF_8)
     }
 
     private fun readDataFromFile(): List<Product> {
-        val file = File(context.cacheDir, "products.json")
+        if (!isExternalStorageAvailable()) return emptyList()
+
+        val file = File(context.getExternalFilesDir("products"), "products.json")
         val json = if (file.exists()) file.readText() else null
 
         return if (json == null)
