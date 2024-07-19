@@ -21,6 +21,8 @@ fun TwoTreesNavHost(
 ) {
     val products by viewModel.products.collectAsStateWithLifecycle()
     val selectedProduct by viewModel.selectedProduct.collectAsStateWithLifecycle()
+    // TODO: collect state changes to isSubscribed variable
+    val isSubscribed = false
 
     NavHost(
         navController = navController,
@@ -35,7 +37,13 @@ fun TwoTreesNavHost(
             )
         }
         composable(route = Screen.Tours.route) {
-            ToursScreen()
+            ToursScreen(
+                isSubscribed = isSubscribed,
+                onSubscribeClick = { _: String ->
+                    Log.i(TAG, "Subscribe to newsletter")
+                    viewModel.onSubscribeClick()
+                }
+            )
         }
         composable(route = Screen.Shop.route) {
             ShopScreen(

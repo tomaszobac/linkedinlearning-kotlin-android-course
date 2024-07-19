@@ -30,6 +30,7 @@ val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
     name = "settings"
 )
 val NUM_BOTTLES = intPreferencesKey("num_of_bottles")
+// TODO: create a new datastore preference key
 
 class ProductRepository(private val context: Context) {
 
@@ -52,6 +53,8 @@ class ProductRepository(private val context: Context) {
         prefs[NUM_BOTTLES] ?: 0
     }
 
+    // TODO: expose the datastore preference
+
     suspend fun incrementQuantity() {
         context.dataStore.edit { prefs ->
             val currentValue = prefs[NUM_BOTTLES] ?: 0
@@ -64,6 +67,10 @@ class ProductRepository(private val context: Context) {
             val currentValue = prefs[NUM_BOTTLES] ?: 0
             if (currentValue > 0) prefs[NUM_BOTTLES] = currentValue - 1
         }
+    }
+
+    suspend fun subscribeToNewsletter() {
+        // TODO: update the datastore preference
     }
 
     private fun isExternalStorageAvailable(): Boolean {

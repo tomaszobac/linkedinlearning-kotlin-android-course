@@ -30,6 +30,8 @@ class MainViewModel(
             initialValue = 0
         )
 
+    // TODO: create a StateFlow<Boolean> that gets data from productRepository
+
     init {
         viewModelScope.launch {
             _products.value = productRepository.getProducts()
@@ -50,6 +52,12 @@ class MainViewModel(
     fun decrementQuantity() {
         viewModelScope.launch {
             productRepository.decrementQuantity()
+        }
+    }
+
+    fun onSubscribeClick() {
+        viewModelScope.launch {
+            productRepository.subscribeToNewsletter()
         }
     }
 
