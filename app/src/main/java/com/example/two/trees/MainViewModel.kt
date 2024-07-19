@@ -7,7 +7,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.two.trees.data.Product
 import com.example.two.trees.data.ProductRepository
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 private const val TAG = "MainViewModel"
@@ -21,8 +23,12 @@ class MainViewModel(
     private val _selectedProduct = MutableStateFlow<Product?>(null)
     val selectedProduct: StateFlow<Product?> = _selectedProduct
 
-    private val _quantity = MutableStateFlow(0)
-    val quantity: StateFlow<Int> = _quantity
+    val quantity: StateFlow<Int> = productRepository.quantity
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = 0
+        )
 
     init {
         viewModelScope.launch {
@@ -36,11 +42,15 @@ class MainViewModel(
     }
 
     fun incrementQuantity() {
-        _quantity.value += 1
+        viewModelScope.launch {
+            productRepository.incrementQuantity()
+        }
     }
 
     fun decrementQuantity() {
-        _quantity.value -= 1
+        viewModelScope.launch {
+            productRepository.decrementQuantity()
+        }
     }
 
 }
