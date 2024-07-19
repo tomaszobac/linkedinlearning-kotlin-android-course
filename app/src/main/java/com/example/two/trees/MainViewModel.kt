@@ -30,7 +30,12 @@ class MainViewModel(
             initialValue = 0
         )
 
-    // TODO: create a StateFlow<Boolean> that gets data from productRepository
+    val isSubscribed: StateFlow<Boolean> = productRepository.isSubscribed
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = false
+        )
 
     init {
         viewModelScope.launch {

@@ -5,6 +5,7 @@ import android.os.Environment
 import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
@@ -30,7 +31,7 @@ val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
     name = "settings"
 )
 val NUM_BOTTLES = intPreferencesKey("num_of_bottles")
-// TODO: create a new datastore preference key
+val IS_SUBSCRIBED = booleanPreferencesKey("is_subscribed")
 
 class ProductRepository(private val context: Context) {
 
@@ -53,7 +54,9 @@ class ProductRepository(private val context: Context) {
         prefs[NUM_BOTTLES] ?: 0
     }
 
-    // TODO: expose the datastore preference
+    val isSubscribed: Flow<Boolean> = context.dataStore.data.map { prefs ->
+        prefs[IS_SUBSCRIBED] ?: false
+    }
 
     suspend fun incrementQuantity() {
         context.dataStore.edit { prefs ->
@@ -70,7 +73,9 @@ class ProductRepository(private val context: Context) {
     }
 
     suspend fun subscribeToNewsletter() {
-        // TODO: update the datastore preference
+        context.dataStore.edit { prefs ->
+            prefs[IS_SUBSCRIBED] = true
+        }
     }
 
     private fun isExternalStorageAvailable(): Boolean {

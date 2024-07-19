@@ -21,8 +21,7 @@ fun TwoTreesNavHost(
 ) {
     val products by viewModel.products.collectAsStateWithLifecycle()
     val selectedProduct by viewModel.selectedProduct.collectAsStateWithLifecycle()
-    // TODO: collect state changes to isSubscribed variable
-    val isSubscribed = false
+    val isSubscribed by viewModel.isSubscribed.collectAsStateWithLifecycle()
 
     NavHost(
         navController = navController,
