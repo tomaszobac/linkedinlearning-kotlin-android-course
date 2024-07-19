@@ -3,9 +3,16 @@ package com.example.two.trees.data
 import android.content.Context
 import android.os.Environment
 import android.util.Log
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.intPreferencesKey
+import androidx.datastore.preferences.preferencesDataStore
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -18,6 +25,11 @@ interface ProductApi {
 }
 
 const val BASE_ENDPOINT_URL = "https://2873199.youcanlearnit.net/"
+
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
+    name = "settings"
+)
+val NUM_BOTTLES = intPreferencesKey("num_of_bottles")
 
 class ProductRepository(private val context: Context) {
 
@@ -34,6 +46,24 @@ class ProductRepository(private val context: Context) {
 
     private val productApi: ProductApi by lazy {
         retrofit.create(ProductApi::class.java)
+    }
+
+    val quantity: Flow<Int> = context.dataStore.data.map { prefs ->
+        prefs[NUM_BOTTLES] ?: 0
+    }
+
+    suspend fun incrementQuantity() {
+        context.dataStore.edit { prefs ->
+            val currentValue = prefs[NUM_BOTTLES] ?: 0
+            prefs[NUM_BOTTLES] = currentValue + 1
+        }
+    }
+
+    suspend fun decrementQuantity() {
+        context.dataStore.edit { prefs ->
+            val currentValue = prefs[NUM_BOTTLES] ?: 0
+            if (currentValue > 0) prefs[NUM_BOTTLES] = currentValue - 1
+        }
     }
 
     private fun isExternalStorageAvailable(): Boolean {
