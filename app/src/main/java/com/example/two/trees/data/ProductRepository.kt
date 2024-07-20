@@ -50,6 +50,8 @@ class ProductRepository(private val context: Context) {
         retrofit.create(ProductApi::class.java)
     }
 
+    private val productDao = ProductDatabase.getDatabase(context).productDao()
+
     val quantity: Flow<Int> = context.dataStore.data.map { prefs ->
         prefs[NUM_BOTTLES] ?: 0
     }
@@ -106,6 +108,10 @@ class ProductRepository(private val context: Context) {
         }
     }
 
+    private suspend fun storeDataInDB(products: List<Product>) {
+        if (products.isNotEmpty()) productDao.insertProducts(products)
+    }
+
     suspend fun getProducts(): List<Product> {
         val productsFromCache = readDataFromFile()
         if (productsFromCache.isNotEmpty()) {
@@ -117,7 +123,7 @@ class ProductRepository(private val context: Context) {
         return if (response.isSuccessful) {
             Log.i("ProductRepository", "loaded from webservice")
             val products = response.body()
-            products?.let{ storeDataInFile(it) }
+            products?.let{ storeDataInDB(it) }
             products.orEmpty()
         }
         else
