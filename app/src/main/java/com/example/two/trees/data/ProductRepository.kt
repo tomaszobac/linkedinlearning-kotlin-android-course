@@ -112,21 +112,16 @@ class ProductRepository(private val context: Context) {
         if (products.isNotEmpty()) productDao.insertProducts(products)
     }
 
-    suspend fun getProducts(): List<Product> {
-        val productsFromCache = readDataFromFile()
-        if (productsFromCache.isNotEmpty()) {
-            Log.i("ProductRepository", "loaded from cache")
-            return productsFromCache
-        }
+    fun getProducts(): Flow<List<Product>> = productDao.getProducts()
+
+    suspend fun loadProducts() {
+        if (productDao.getCount() > 0) return
 
         val response = productApi.getProducts()
-        return if (response.isSuccessful) {
+        if (response.isSuccessful) {
             Log.i("ProductRepository", "loaded from webservice")
             val products = response.body()
-            products?.let{ storeDataInDB(it) }
-            products.orEmpty()
+            products?.let { storeDataInDB(it) }
         }
-        else
-            emptyList()
     }
 }
