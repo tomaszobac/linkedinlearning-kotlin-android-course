@@ -1,6 +1,10 @@
 # Complete Guide to Android Development with Kotlin for Beginners
 This is the repository for the LinkedIn Learning course `Complete Guide to Android Development with Kotlin for Beginners`. The full course is available from [LinkedIn Learning][lil-course-url].
 
+![lil-thumbnail-url]
+
+This complete guide to Android development with Kotlin offers an overview of the basics of application management for new and early-career Android developers. Explore the foundational skills required to get up and running with everything from creating your first Android application and customizing architectural components like screens, text, and images, to understanding and managing data and storage like a pro. Along the way, instructor Annyce Davis offers practical tips on how to optimize your application and workflow. By the end of this course, you’ll be prepared to continue with the next steps on your Android learning journey.
+
 _See the readme file in the main branch for updated instructions and information._
 ## Instructions
 This repository has branches for each of the videos in the course. You can use the branch pop up menu in github to switch to a specific branch and take a look at the course at that stage, or you can add `/tree/BRANCH_NAME` to the URL to go to the branch you want to access.
@@ -20,15 +24,17 @@ To resolve this issue:
     Add changes to git using this command: git add .
 	Commit changes using this command: git commit -m "some message"
 
-## Installing
-1. To use these exercise files, you must have the following installed:
-	- [list of requirements for course]
-2. Clone this repository into your local machine using the terminal (Mac), CMD (Windows), or a GUI tool like SourceTree.
-3. [Course-specific instructions]
+## Instructor
 
+Annyce Davis
+
+Engineering Leader, International Conference Speaker, and Author
+             
+
+Check out my other courses on [LinkedIn Learning](https://www.linkedin.com/learning/instructors/annyce-davis?u=104).
 
 [0]: # (Replace these placeholder URLs with actual course URLs)
 
-[lil-course-url]: https://www.linkedin.com/learning/
-[lil-thumbnail-url]: http://
+[lil-course-url]: https://www.linkedin.com/learning/complete-guide-to-android-development-with-kotlin-for-beginners
+[lil-thumbnail-url]: https://media.licdn.com/dms/image/v2/D4E0DAQEVl8ruJES7MA/learning-public-crop_675_1200/learning-public-crop_675_1200/0/1724188010632?e=2147483647&v=beta&t=e3E5FngiOudXD1U7eFvIrjpgZ6iWmVUC0U0jJ-Lua2Q
 
