@@ -89,7 +89,7 @@ fun StateApp() {
                     modifier = Modifier.padding(innerPadding),
                     guess = guess,
                     guessChanged = { newGuess ->
-                        // TODO: update the previous guess
+                        guess = newGuess
                     },
                     checkGuess = {
                         guessedState = states.find { it == guess }
@@ -118,9 +118,7 @@ fun EnterGuess(
     ) {
         TextField(
             value = guess,
-            onValueChange = {
-                // TODO: call correct parameter
-            },
+            onValueChange = guessChanged,
             placeholder = {
                 Text("Enter a state")
             }
@@ -129,9 +127,7 @@ fun EnterGuess(
         Spacer(modifier = Modifier.height(24.dp))
 
         Button(
-            onClick = {
-                // TODO: call correct parameter
-            }
+            onClick = checkGuess
         ) {
             Text(
                 text = "Make your guess",
