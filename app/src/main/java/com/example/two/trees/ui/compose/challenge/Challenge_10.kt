@@ -21,6 +21,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -48,6 +49,8 @@ fun Challenge10App() {
             }
         ) { innerPadding ->
             val viewModel = viewModel<Challenge10ViewModel>()
+            val quantity by viewModel.quantity.collectAsState()
+            val totalAmount by viewModel.totalAmount.collectAsState()
             // TODO: create missing variables
 
             Column(
@@ -81,7 +84,7 @@ fun Challenge10App() {
                     text = "Total cans: $quantity",
                     style = MaterialTheme.typography.titleLarge
                 )
-                
+
                 Text(
                     modifier = Modifier
                         .fillMaxWidth()
