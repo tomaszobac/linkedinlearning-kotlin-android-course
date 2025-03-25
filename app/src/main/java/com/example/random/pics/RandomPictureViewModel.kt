@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.random.pics.data.Picture
 import com.example.random.pics.data.PictureRepository
+import com.example.two.trees.data.Product
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -21,6 +22,12 @@ class RandomPictureViewModel(
     private val _randomPageNumber = MutableStateFlow(0)
 
     // TODO: create StateFlows for the selected picture
+    private val _selectedPicture = MutableStateFlow<Picture?>(null)
+    val selectedPicture = _selectedPicture
+
+    fun selectPicture(picture: Picture) {
+        _selectedPicture.value = picture
+    }
 
     val pictures: StateFlow<List<Picture>> = _randomPageNumber
         .mapLatest { num ->
